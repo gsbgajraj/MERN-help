@@ -9,6 +9,7 @@ const app = express();
 const __dirname = path.resolve(); // This resolves the directory name correctly
 app.use(express.static(path.join(__dirname, '..', 'frontend', 'dist')));
 
+you can directly copy paste the code from server.js to setup mern app
 // Handle any requests that don't match the API routes
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'frontend', 'dist', 'index.html'));
