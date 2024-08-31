@@ -1,24 +1,11 @@
-# MERN-help
 
-import express from 'express';
 import path from 'path';
 
-const app = express();
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const buildPath = path.join(__dirname, '../frontend/dist');
+app.use(express.static(buildPath));
 
-// Serve static files from the React app
-const __dirname = path.resolve(); // This resolves the directory name correctly
-app.use(express.static(path.join(__dirname, '..', 'frontend', 'dist')));
-
-you can directly copy paste the code from server.js to setup mern app
-// Handle any requests that don't match the API routes
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'frontend', 'dist', 'index.html'));
-});
-
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
-
-
-update every day
+app.get('*', (req, res) => { res.sendFile(path.join(__dirname, '..', 'frontend', 'dist', 'index.html')); });
